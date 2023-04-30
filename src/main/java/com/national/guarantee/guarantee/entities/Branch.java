@@ -4,20 +4,31 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table (name = "tb_branch")
 public class Branch implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
+		@Id
+		@GeneratedValue (strategy = GenerationType.IDENTITY)
 		private Integer numberBranch;
 		private Integer codeProduct;
 		private Integer quantity;
 		private Date date;
-		private String sac;
+		private Integer sac;
 		private String technicalAnalysis;
 		
 		public Branch() {
 		}
 
-		public Branch(Integer numberBranch, Integer codeProduct, Integer quantity, Date date, String sac,
+		public Branch(Integer numberBranch, Integer codeProduct, Integer quantity, Date date, Integer sac,
 				String technicalAnalysis) {
 			super();
 			this.numberBranch = numberBranch;
@@ -60,11 +71,11 @@ public class Branch implements Serializable{
 			this.date = date;
 		}
 
-		public String getSac() {
+		public Integer getSac() {
 			return sac;
 		}
 
-		public void setSac(String sac) {
+		public void setSac(Integer sac) {
 			this.sac = sac;
 		}
 
