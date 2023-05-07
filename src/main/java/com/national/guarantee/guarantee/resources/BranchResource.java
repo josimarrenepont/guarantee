@@ -15,7 +15,7 @@ public class BranchResource {
 	
 	@GetMapping
 	public ResponseEntity<Branch> findAll(){
-		Branch branch = new Branch(1, 123456, 5, new Date(), 12345, "erro");
+		Branch branch = new Branch(null, 1, 123456, 5, new Date(), 12345, "erro");
 		
 		return ResponseEntity.ok().body(branch);
 	}

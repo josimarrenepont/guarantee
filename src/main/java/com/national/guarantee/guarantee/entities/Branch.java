@@ -18,6 +18,7 @@ public class Branch implements Serializable{
 	
 		@Id
 		@GeneratedValue (strategy = GenerationType.IDENTITY)
+		private Long id;
 		private Integer numberBranch;
 		private Integer codeProduct;
 		private Integer quantity;
@@ -28,15 +29,24 @@ public class Branch implements Serializable{
 		public Branch() {
 		}
 
-		public Branch(Integer numberBranch, Integer codeProduct, Integer quantity, Date date, Integer sac,
+		public Branch(Long id, Integer numberBranch, Integer codeProduct, Integer quantity, Date date, Integer sac,
 				String technicalAnalysis) {
 			super();
+			this.id = id;
 			this.numberBranch = numberBranch;
 			this.codeProduct = codeProduct;
 			this.quantity = quantity;
 			this.date = date;
 			this.sac = sac;
 			this.technicalAnalysis = technicalAnalysis;
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
 		}
 
 		public Integer getNumberBranch() {
@@ -89,7 +99,7 @@ public class Branch implements Serializable{
 
 		@Override
 		public int hashCode() {
-			return Objects.hash(codeProduct, numberBranch, sac);
+			return Objects.hash(id, numberBranch);
 		}
 
 		@Override
@@ -101,8 +111,9 @@ public class Branch implements Serializable{
 			if (getClass() != obj.getClass())
 				return false;
 			Branch other = (Branch) obj;
-			return Objects.equals(codeProduct, other.codeProduct) && Objects.equals(numberBranch, other.numberBranch)
-					&& Objects.equals(sac, other.sac);
+			return Objects.equals(id, other.id) && Objects.equals(numberBranch, other.numberBranch);
 		}
+
+
 		
 }
