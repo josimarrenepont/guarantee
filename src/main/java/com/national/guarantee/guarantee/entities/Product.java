@@ -15,7 +15,6 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Integer codeProduct;
 	private String nameProduct;
 	private String refProduct;
 	private Double priceProduct;
@@ -24,10 +23,9 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(Long id, Integer codeProduct, String nameProduct, String refProduct, Double priceProduct) {
+	public Product(Long id, String nameProduct, String refProduct, Double priceProduct) {
 		super();
 		this.id = id;
-		this.codeProduct = codeProduct;
 		this.nameProduct = nameProduct;
 		this.refProduct = refProduct;
 		this.priceProduct = priceProduct;
@@ -39,14 +37,6 @@ public class Product {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Integer getCodeProduct() {
-		return codeProduct;
-	}
-
-	public void setCodeProduct(Integer codeProduct) {
-		this.codeProduct = codeProduct;
 	}
 
 	public String getNameProduct() {
@@ -75,7 +65,7 @@ public class Product {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codeProduct, id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -87,8 +77,7 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return Objects.equals(codeProduct, other.codeProduct) && Objects.equals(id, other.id);
+		return Objects.equals(id, other.id);
 	}
-	
-	
+		
 }
