@@ -1,7 +1,10 @@
 package com.national.guarantee.guarantee.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,27 +13,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_products")
-public class Product implements Serializable {
-
+@Table(name = "tb_order")
+public class Order implements Serializable{
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nameProduct;
-	private String refProduct;
-	private Double priceProduct;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private Instant moment;
 	
-	public Product() {
+	private Integer orderStatus;
+	
+	public Order() {
 	}
 
-	public Product(Long id, String nameProduct, String refProduct, Double priceProduct) {
+	public Order(Long id, Instant moment, Integer orderStatus) {
 		super();
 		this.id = id;
-		this.nameProduct = nameProduct;
-		this.refProduct = refProduct;
-		this.priceProduct = priceProduct;
+		this.moment = moment;
+		this.orderStatus = orderStatus;
 	}
 
 	public Long getId() {
@@ -41,28 +44,20 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
-	public String getNameProduct() {
-		return nameProduct;
+	public Instant getMoment() {
+		return moment;
 	}
 
-	public void setNameProduct(String nameProduct) {
-		this.nameProduct = nameProduct;
+	public void setMoment(Instant moment) {
+		this.moment = moment;
 	}
 
-	public String getRefProduct() {
-		return refProduct;
+	public Integer getOrderStatus() {
+		return orderStatus;
 	}
 
-	public void setRefProduct(String refProduct) {
-		this.refProduct = refProduct;
-	}
-
-	public Double getPriceProduct() {
-		return priceProduct;
-	}
-
-	public void setPriceProduct(Double priceProduct) {
-		this.priceProduct = priceProduct;
+	public void setOrderStatus(Integer orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	@Override
@@ -78,8 +73,9 @@ public class Product implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		Order other = (Order) obj;
 		return Objects.equals(id, other.id);
 	}
-		
+	
+	
 }

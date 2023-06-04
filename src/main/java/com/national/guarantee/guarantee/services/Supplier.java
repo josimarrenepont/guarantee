@@ -1,7 +1,9 @@
 package com.national.guarantee.guarantee.services;
 
+import java.io.Serializable;
 import java.util.Objects;
 
+import com.national.guarantee.guarantee.entities.Branch;
 import com.national.guarantee.guarantee.entities.Product;
 
 import jakarta.persistence.Entity;
@@ -14,8 +16,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_suppliers")
-public class Supplier {
+public class Supplier implements Serializable {
 
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,6 +30,11 @@ public class Supplier {
 	@ManyToOne
 	@JoinColumn(name = "tb_product_id")
 	private Product product;
+	
+	@ManyToOne
+	@JoinColumn(name = "tb_branch_id")
+	private Branch branch;
+	
 	
 	public Supplier() {
 	}
@@ -69,11 +78,19 @@ public class Supplier {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(codeSupplier, id);
+		return Objects.hash(branch, id, nameSupplier, product);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -83,8 +100,18 @@ public class Supplier {
 		if (getClass() != obj.getClass())
 			return false;
 		Supplier other = (Supplier) obj;
-		return Objects.equals(codeSupplier, other.codeSupplier) && Objects.equals(id, other.id);
+		return Objects.equals(branch, other.branch) && Objects.equals(id, other.id)
+				&& Objects.equals(nameSupplier, other.nameSupplier) && Objects.equals(product, other.product);
 	}
+
+	@Override
+	public String toString() {
+		return nameSupplier + email + product +
+				branch + getCodeSupplier() + getNameSupplier()
+				+ getEmail() + getProduct() + getBranch();
+	}
+	
+
 
 	
 }
