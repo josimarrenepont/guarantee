@@ -3,14 +3,18 @@ package com.national.guarantee.guarantee.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_products")
+@Table(name = "tb_product")
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +25,9 @@ public class Product implements Serializable {
 	private String refProduct;
 	private Double priceProduct;
 	
+	@ManyToOne
+	@JoinColumn(name = "tb_supplier_id")
+	private Supplier supplier;
 	
 	public Product() {
 	}

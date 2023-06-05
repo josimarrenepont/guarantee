@@ -13,6 +13,7 @@ import com.national.guarantee.guarantee.entities.Branch;
 import com.national.guarantee.guarantee.entities.Order;
 import com.national.guarantee.guarantee.entities.OrderItem;
 import com.national.guarantee.guarantee.entities.Product;
+import com.national.guarantee.guarantee.entities.Supplier;
 import com.national.guarantee.guarantee.entities.User;
 import com.national.guarantee.guarantee.entities.enums.OrderStatus;
 import com.national.guarantee.guarantee.repositories.BranchRepository;
@@ -21,7 +22,6 @@ import com.national.guarantee.guarantee.repositories.OrderRepository;
 import com.national.guarantee.guarantee.repositories.ProductRepository;
 import com.national.guarantee.guarantee.repositories.SupplierRepository;
 import com.national.guarantee.guarantee.repositories.UserRepository;
-import com.national.guarantee.guarantee.services.Supplier;
 
 
 @Configuration
@@ -48,7 +48,7 @@ public class TestConfig implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		Branch b1 = new Branch(null, 1, 123456, 5, new Date(), 123, "empresa1" );
+		Branch b1 = new Branch(null, 1, 123456, 5, new Date(), 123, "apresentou falha" );
 		Branch b2 = new Branch(null, 1, 123456, 5, new Date(), 345, "apresentou falha" );
 		Branch b3 = new Branch(null, 1, 123456, 5, new Date(), 678, "apresentou falha" );
 	
@@ -60,6 +60,7 @@ public class TestConfig implements CommandLineRunner{
 		productRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		
+		
 		productRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		Supplier sp1 = new Supplier(null, "code123", "fornecedor1", "fornecedor1@gmail.com");
@@ -67,6 +68,7 @@ public class TestConfig implements CommandLineRunner{
 		Supplier sp3 = new Supplier(null, "code123", "fornecedor3", "fornecedor3@gmail.com");
 		
 		supplierRepository.saveAll(Arrays.asList(sp1, sp2, sp3));
+		
 		
 		User u1 = new User(null, "empresa1", "1234567");
 		User u2 = new User(null, "empresa2", "1234567");

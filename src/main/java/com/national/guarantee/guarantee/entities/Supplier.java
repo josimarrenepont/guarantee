@@ -1,21 +1,23 @@
-package com.national.guarantee.guarantee.services;
+package com.national.guarantee.guarantee.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-import com.national.guarantee.guarantee.entities.Branch;
-import com.national.guarantee.guarantee.entities.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_suppliers")
+@Table(name = "tb_supplier")
 public class Supplier implements Serializable {
 
 
@@ -35,6 +37,9 @@ public class Supplier implements Serializable {
 	@JoinColumn(name = "tb_branch_id")
 	private Branch branch;
 	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "supplier")
+	private Set<Product> products = new HashSet<>();
 	
 	public Supplier() {
 	}
