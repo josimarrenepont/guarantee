@@ -2,7 +2,6 @@ package com.national.guarantee.guarantee.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,34 +10,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_supplier")
 public class Supplier implements Serializable {
-
-
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String codeSupplier;
 	private String nameSupplier;
 	private String email;
+
+	@OneToMany
+	private Set<Branch> branchs = new HashSet<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "tb_product_id")
-	private Product product;
-	
-	@ManyToOne
-	@JoinColumn(name = "tb_branch_id")
-	private Branch branch;
-	
+
 	@JsonIgnore
-	@ManyToMany(mappedBy = "supplier")
+	@ManyToMany(mappedBy = "suppliers")
 	private Set<Product> products = new HashSet<>();
 	
 	public Supplier() {
@@ -46,10 +39,12 @@ public class Supplier implements Serializable {
 	
 	public Supplier(Long id, String codeSupplier, String nameSupplier, String email) {
 		super();
+		
 		this.id = id;
 		this.codeSupplier = codeSupplier;
 		this.nameSupplier = nameSupplier;
 		this.email = email;
+		
 	}
 	public Long getId() {
 		return id;
@@ -76,24 +71,20 @@ public class Supplier implements Serializable {
 		this.email = email;
 	}
 	
-	public Product getProduct() {
-		return product;
+	public Set<Product> getProducts(){
+		return products;
 	}
-
-	public void setProduct(Product product) {
-		this.product = product;
+	
+	public Set<Branch> getBranchs(){
+		return branchs;
 	}
-	public Branch getBranch() {
-		return branch;
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}
-
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(branch, id, nameSupplier, product);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -105,18 +96,20 @@ public class Supplier implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Supplier other = (Supplier) obj;
-		return Objects.equals(branch, other.branch) && Objects.equals(id, other.id)
-				&& Objects.equals(nameSupplier, other.nameSupplier) && Objects.equals(product, other.product);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
+
 
 	@Override
 	public String toString() {
-		return nameSupplier + email + product +
-				branch + getCodeSupplier() + getNameSupplier()
-				+ getEmail() + getProduct() + getBranch();
+		return nameSupplier + email + getCodeSupplier() + getNameSupplier()
+				+ getEmail();
 	}
 	
-
-
 	
 }

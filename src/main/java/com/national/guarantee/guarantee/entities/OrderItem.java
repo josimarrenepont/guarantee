@@ -1,6 +1,7 @@
 package com.national.guarantee.guarantee.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import com.national.guarantee.guarantee.entities.pk.OrderItemPK;
 
@@ -19,6 +20,8 @@ public class OrderItem implements Serializable{
 	private Integer quantity;
 	private Double price;
 	
+	
+	
 	public OrderItem() {
 	}
 
@@ -28,6 +31,20 @@ public class OrderItem implements Serializable{
 		id.setProduct(product);
 		this.quantity = quantity;
 		this.price = price;
+	}
+	
+	public Order getOrder() {
+		return getOrder();
+	}
+	public void setOrder(Order order) {
+		id.setOrder(order);
+	}
+	public Product getProduct() {
+		return getProduct();
+	}
+	
+	public void setProduct(Product product) {
+		id.setProduct(product);
 	}
 
 	public Integer getQuantity() {
@@ -45,7 +62,32 @@ public class OrderItem implements Serializable{
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	public Double getSubTotal() {
+		return price * quantity;
 	
-	
+	}
 
-}
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderItem other = (OrderItem) obj;
+		if(id == null) {
+			if(other.id != null) 
+				return false;
+		}else if(!id.equals(other.id)) 
+				return false;
+		return true;
+		}
+	
+	}
+

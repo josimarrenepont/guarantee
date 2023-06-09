@@ -1,13 +1,19 @@
 package com.national.guarantee.guarantee.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,21 +27,22 @@ public class Branch implements Serializable{
 		private Long id;
 		private Integer numberBranch;
 		private Integer codeProduct;
-		private Integer quantity;
+		private Integer quantityProduct;
 		private Date date;
 		private Integer sac;
 		private String technicalAnalysis;
 		
+		
 		public Branch() {
 		}
 
-		public Branch(Long id, Integer numberBranch, Integer codeProduct, Integer quantity, Date date, Integer sac,
+		public Branch(Long id, Integer numberBranch, Integer codeProduct, Integer quantityProduct, Date date, Integer sac,
 				String technicalAnalysis) {
 			super();
 			this.id = id;
 			this.numberBranch = numberBranch;
 			this.codeProduct = codeProduct;
-			this.quantity = quantity;
+			this.quantityProduct = quantityProduct;
 			this.date = date;
 			this.sac = sac;
 			this.technicalAnalysis = technicalAnalysis;
@@ -66,11 +73,11 @@ public class Branch implements Serializable{
 		}
 
 		public Integer getQuantity() {
-			return quantity;
+			return quantityProduct;
 		}
 
 		public void setQuantity(Integer quantity) {
-			this.quantity = quantity;
+			this.quantityProduct = quantity;
 		}
 
 		public Date getDate() {
@@ -96,10 +103,13 @@ public class Branch implements Serializable{
 		public void setTechnicalAnalysis(String technicalAnalysis) {
 			this.technicalAnalysis = technicalAnalysis;
 		}
-
+		
 		@Override
 		public int hashCode() {
-			return Objects.hash(id, numberBranch);
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((id == null) ? 0 : id.hashCode());
+			return result;
 		}
 
 		@Override
@@ -111,9 +121,11 @@ public class Branch implements Serializable{
 			if (getClass() != obj.getClass())
 				return false;
 			Branch other = (Branch) obj;
-			return Objects.equals(id, other.id) && Objects.equals(numberBranch, other.numberBranch);
+			if (id == null) {
+				if (other.id != null)
+					return false;
+			} else if (!id.equals(other.id))
+				return false;
+			return true;
 		}
-
-
-		
-}
+	}

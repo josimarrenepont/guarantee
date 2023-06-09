@@ -1,16 +1,17 @@
 package com.national.guarantee.guarantee.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,11 +25,16 @@ public class Product implements Serializable {
 	private String nameProduct;
 	private String refProduct;
 	private Double priceProduct;
+
+	@ManyToMany
+	@JoinTable(name = "tb_product_supplier", joinColumns = 
+	@JoinColumn(name = "product_id"), inverseJoinColumns = 
+	@JoinColumn(name = "supplier_id"))
+	private Set<Supplier> suppliers = new HashSet<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "tb_supplier_id")
-	private Supplier supplier;
-	
+	@OneToMany(mappedBy = "id.product")
+	private Set<OrderItem> items = new HashSet<>();
+
 	public Product() {
 	}
 
@@ -72,9 +78,28 @@ public class Product implements Serializable {
 		this.priceProduct = priceProduct;
 	}
 
+	public Set<Branch> getBranchs() {
+		return getBranchs();
+	}
+
+	public Set<Supplier> getSuppliers() {
+		return suppliers;
+	}
+	
+	public Set<Order> getOrders(){
+		Set<Order> set = new HashSet<>();
+		for(OrderItem x : items) {
+			set.add(x.getOrder());
+		}
+		return set;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -86,7 +111,11 @@ public class Product implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
-		
 }

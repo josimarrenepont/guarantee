@@ -13,7 +13,7 @@ import com.national.guarantee.guarantee.entities.Branch;
 import com.national.guarantee.guarantee.services.BranchService;
 
 @RestController
-@RequestMapping (value = "/branchs")
+@RequestMapping(value = "/branchs")
 public class BranchResource {
 	
 	@Autowired
