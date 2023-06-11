@@ -2,7 +2,6 @@ package com.national.guarantee.guarantee.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

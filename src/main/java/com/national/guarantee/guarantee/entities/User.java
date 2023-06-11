@@ -3,6 +3,7 @@ package com.national.guarantee.guarantee.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,79 +18,70 @@ import jakarta.persistence.Table;
 @Table(name = "tb_user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-		
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id;
-		private String descriptionCompany;
-		private String password;
-		
-		@JsonIgnore
-		@OneToMany(mappedBy = "client")
-		private List<Order> orders = new ArrayList<>(); 
-		
-		public User() {
-		}
 
-		public User(Long id, String descriptionCompany, String password) {
-			super();
-			this.id = id;
-			this.descriptionCompany = descriptionCompany;
-			this.password = password;
-		}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String descriptionCompany;
+	private String password;
 
-		public Long getId() {
-			return id;
-		}
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>();
 
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		public String getDescriptionCompany() {
-			return descriptionCompany;
-		}
-
-		public void setDescriptionCompany(String descriptionCompany) {
-			this.descriptionCompany = descriptionCompany;
-		}
-
-		public String getPassword() {
-			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
-		}
-		
-		public List<Order> getOrders() {
-			return orders;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((id == null) ? 0 : id.hashCode());
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			User other = (User) obj;
-			if (id == null) {
-				if (other.id != null)
-					return false;
-			} else if (!id.equals(other.id))
-				return false;
-			return true;
-		}
+	public User() {
 	}
 
+	public User(Long id, String descriptionCompany, String password) {
+		super();
+		this.id = id;
+		this.descriptionCompany = descriptionCompany;
+		this.password = password;
+	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescriptionCompany() {
+		return descriptionCompany;
+	}
+
+	public void setDescriptionCompany(String descriptionCompany) {
+		this.descriptionCompany = descriptionCompany;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(id, other.id);
+	}
+
+}
