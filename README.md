@@ -2,7 +2,7 @@
 
 # Sobre o projeto
 Projeto elaborado relata, cadastro de produtos que apresentaram problemas técnicos, onde será realizado análise, 
-e posteriormente enviar as informações sobre os defeitos dos produtos, o envio será via e-mail ao fornecedor do produto.
+e posteriormente enviar as informações sobre os defeitos.
 
 # Modelo Conceitual
 
