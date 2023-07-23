@@ -14,7 +14,7 @@ e posteriormente enviar as informações sobre os defeitos.
 
 * Java
 * Spring Boot
-* JPA / Hibernate
+* JPA - JPQL / Hibernate
 * Maven
 
 # Implantação em produção
