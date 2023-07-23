@@ -6,4 +6,6 @@ import com.national.guarantee.guarantee.entities.Branch;
 
 public interface BranchRepository extends JpaRepository<Branch, Long>{
 
+
+	
 }

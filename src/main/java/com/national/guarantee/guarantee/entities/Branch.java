@@ -2,12 +2,15 @@ package com.national.guarantee.guarantee.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +29,9 @@ public class Branch implements Serializable {
 	private Integer sac;
 	private String technicalAnalysis;
 
+	@ManyToMany(mappedBy = "branchs")
+	private Set<Supplier> suppliers = new HashSet<>();
+	
 	public Branch() {
 	}
 
@@ -97,6 +103,10 @@ public class Branch implements Serializable {
 		this.technicalAnalysis = technicalAnalysis;
 	}
 
+	public Set<Supplier> getSuppliers() {
+		return suppliers;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -113,5 +123,6 @@ public class Branch implements Serializable {
 		Branch other = (Branch) obj;
 		return Objects.equals(id, other.id);
 	}
+
 
 }

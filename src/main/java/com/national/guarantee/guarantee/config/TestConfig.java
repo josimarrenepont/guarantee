@@ -74,9 +74,12 @@ public class TestConfig implements CommandLineRunner{
 		sp1.getBranchs().add(b1);
 		sp2.getBranchs().add(b2);
 		sp3.getBranchs().add(b3);
+		
+		
 			
 		productRepository.saveAll(Arrays.asList(p1, p2, p3));
-		supplierRepository.saveAll(Arrays.asList(sp1, sp2, sp3));
+		//supplierRepository.saveAll(Arrays.asList(sp1, sp2, sp3));
+		//branchRepository.saveAll(Arrays.asList(b1, b2, b3));
 		
 		User u1 = new User(null, "empresa1", "1234567");
 		User u2 = new User(null, "empresa2", "1234567");

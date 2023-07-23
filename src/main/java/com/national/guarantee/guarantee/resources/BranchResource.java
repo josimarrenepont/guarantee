@@ -19,6 +19,8 @@ public class BranchResource {
 	@Autowired
 	private BranchService service; 
 	
+	
+	
 	@GetMapping
 	public ResponseEntity<List<Branch>> findAll(){
 		List<Branch> list = service.findAll();
@@ -29,6 +31,7 @@ public class BranchResource {
 	public ResponseEntity<Branch> findById(@PathVariable Long id){
 		Branch obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
-		
 	}
+	
+	
 }
