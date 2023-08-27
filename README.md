@@ -10,7 +10,7 @@ e posteriormente enviar as informações.
 
 # Tecnologias utilizadas
 
-## Back end
+## Back End
 
 * Java
 * Spring Boot
