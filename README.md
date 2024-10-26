@@ -1,8 +1,8 @@
 <h1 align="center">Guarantee Project</h1>
 
 # Sobre o projeto
-Projeto elaborado relata, cadastro de produtos que apresentaram problemas técnicos, onde será realizado análise 
-e posteriormente enviar as informações.
+
+Projeto voltado ao gerenciamento de garantias e cadastro de produtos com problemas técnicos, permitindo o acompanhamento de status e registro de falhas.
 
 # Modelo Conceitual
 
