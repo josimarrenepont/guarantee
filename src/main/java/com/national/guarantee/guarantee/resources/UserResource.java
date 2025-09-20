@@ -15,7 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/users")
-@Tag(name = "Branch", description = "Endpoints para gerenciamento de users")
+@Tag(name = "Users", description = "Endpoints para gerenciamento de users")
 public class UserResource {
 
 	@Autowired

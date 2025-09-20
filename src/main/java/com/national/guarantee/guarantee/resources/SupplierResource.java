@@ -19,7 +19,7 @@ import com.national.guarantee.guarantee.services.impl.SupplierServiceImpl;
 
 @RestController
 @RequestMapping(value = "/suppliers")
-@Tag(name = "Branch", description = "Endpoints para gerenciamento de suppliers")
+@Tag(name = "Supplier", description = "Endpoints para gerenciamento de suppliers")
 public class SupplierResource {
 	
 

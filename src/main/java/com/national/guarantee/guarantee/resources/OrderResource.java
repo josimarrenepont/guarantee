@@ -19,7 +19,7 @@ import com.national.guarantee.guarantee.services.impl.OrderServiceImpl;
 
 @RestController
 @RequestMapping(value = "/orders")
-@Tag(name = "Branch", description = "Endpoints para gerenciamento de orders")
+@Tag(name = "Order", description = "Endpoints para gerenciamento de orders")
 public class OrderResource {
 
 	private final OrderService service;

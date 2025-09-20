@@ -19,7 +19,7 @@ import com.national.guarantee.guarantee.services.impl.ProductServiceImpl;
 
 @RestController
 @RequestMapping(value = "/products")
-@Tag(name = "Branch", description = "Endpoints para gerenciamento de products")
+@Tag(name = "Product", description = "Endpoints para gerenciamento de products")
 public class ProductResource {
 	
 
