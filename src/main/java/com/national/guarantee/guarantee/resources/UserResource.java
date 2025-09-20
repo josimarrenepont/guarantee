@@ -5,10 +5,7 @@ import java.util.List;
 
 import com.national.guarantee.guarantee.entities.User;
 import com.national.guarantee.guarantee.services.UserService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/users")
+@Tag(name = "Branch", description = "Endpoints para gerenciamento de users")
 public class UserResource {
 
 	@Autowired
