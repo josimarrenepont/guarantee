@@ -1,16 +1,16 @@
 package com.national.guarantee.guarantee.services;
 
-import com.national.guarantee.guarantee.entities.Product;
 import com.national.guarantee.guarantee.entities.dto.ProductDTO;
 
 import java.util.List;
 
 public interface ProductService {
+
     List<ProductDTO> findAll();
 
-    Product findById(Long id);
+    ProductDTO findById(Long id);
 
-    Product createProduct(ProductDTO productDTO);
+    ProductDTO createProduct(ProductDTO productDTO);
 
-    Product update(Long id, ProductDTO obj);
+    ProductDTO update(Long id, ProductDTO obj);
 }
