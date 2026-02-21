@@ -6,11 +6,11 @@ import com.national.guarantee.guarantee.repositories.ProductRepository;
 import com.national.guarantee.guarantee.services.ProductService;
 import com.national.guarantee.guarantee.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -21,10 +21,9 @@ public class ProductServiceImpl implements ProductService {
 		this.repository = repository;
 	}
 
-	@Override
-	public List<ProductDTO> findAll() {
-		List<Product> products = repository.findAll();
-		return products.stream().map(ProductDTO::new).collect(Collectors.toList());
+	public Page<ProductDTO> findAllPaged(Pageable pageable) {
+		Page<Product> products = repository.findAll(pageable);
+		return products.map(ProductDTO::new);
 	}
 
 	@Override

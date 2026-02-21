@@ -1,12 +1,13 @@
 package com.national.guarantee.guarantee.services;
 
 import com.national.guarantee.guarantee.entities.dto.ProductDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface ProductService {
 
-    List<ProductDTO> findAll();
+    Page<ProductDTO> findAllPaged(Pageable pageable);
 
     ProductDTO findById(Long id);
 
